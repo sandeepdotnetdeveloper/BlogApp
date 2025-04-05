@@ -1,0 +1,14 @@
+﻿@model List<BlogApp.Models.Blog>
+
+<h1>Blog Posts</h1>
+<a href="@Url.Action("Create")">Create New Blog Post</a>
+
+<ul>
+    @foreach (var blog in Model)
+    {
+        <li>
+            <strong>@blog.Title</strong> - @blog.CreatedAt
+            <p>@blog.Content</p>
+        </li>
+    }
+</ul>
