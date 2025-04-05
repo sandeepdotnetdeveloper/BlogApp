@@ -1,7 +1,16 @@
 using BlogApp.Models;
 using BlogApp.Services;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // Listen on port 8080
+    options.Listen(IPAddress.Any, 8080);
+
+    // Listen on port 8081
+    options.Listen(IPAddress.Any, 8081);
+});
 builder.Services.AddSingleton<BlogService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -16,7 +25,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
